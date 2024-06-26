@@ -1,0 +1,37 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table Team {
+  team_id int [increment, primary key]
+  nama_team varchar(255) [not null]
+  deskripsi varchar(255)
+}
+
+Table User {
+  user_id int [increment, primary key]
+  nama varchar(255) [not null]
+  email varchar(255) [not null]
+  password varchar(255) [not null]
+  team_id int
+}
+
+Table Task {
+  task_id int [increment, primary key]
+  judul varchar(255) [not null]
+  deskripsi varchar(255)
+  status varchar(50) [not null]
+  prioritas int [not null]
+  team_id int 
+  user_id int
+  tanggal_tugas date
+}
+
+Ref: User.team_id - Team.team_id
+Ref: Task.team_id - Team.team_id
+Ref: Task.user_id - User.user_id
+
+// Ref: posts.user_id > users.id // many-to-one
+
+// Ref: users.id < follows.following_user_id
+
+// Ref: users.id < follows.followed_user_id
