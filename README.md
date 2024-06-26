@@ -17,7 +17,9 @@ Projek UAS Mata kuliah Pemrograman Berbasis Objek. Anggota Kelompok:
 ## Mengenai Database
 
 1. Nama database adalah `todolist`.
-2. Terdapat tiga tabel yang dibuat:
+2. Username database adalah `root` dan password nya adalah `12345678`.
+3. Port database adalah `3306`.
+4. Terdapat tiga tabel yang dibuat:
 
 ```sql
 -- Membuat tabel Team
