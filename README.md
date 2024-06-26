@@ -10,9 +10,10 @@ Projek UAS Mata kuliah Pemrograman Berbasis Objek. Anggota Kelompok:
 
 ## Mengenai projek
 
-1. Dependency seperti `mysql connector` diinstall menggunakan Maven. [Install Maven](https://maven.apache.org/install.html)
-2. Perintah install dependency menggunakan maven `mvn install`.
-3. Konfigurasikan database pada file [DBConnection](./src/main/java/com/todolist/DBConnection.java).
+1. Projek ini GUI Based dengan Java Swing.
+2. Dependency seperti `mysql connector` diinstall menggunakan Maven. [Install Maven](https://maven.apache.org/install.html)
+3. Perintah install dependency menggunakan maven `mvn install`.
+4. Konfigurasikan database pada file [DBConnection](./src/main/java/com/todolist/DBConnection.java).
 
 ## Mengenai Database
 
