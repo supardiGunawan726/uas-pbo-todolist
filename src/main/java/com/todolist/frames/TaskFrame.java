@@ -17,15 +17,18 @@ import com.todolist.models.Task;
 import com.todolist.models.Team;
 import com.todolist.models.User;
 import com.todolist.services.TaskService;
+import com.todolist.services.UserService;
 
 public class TaskFrame extends JFrame implements TaskMovedListener {
   TaskService taskService;
+  UserService userService;
   JPanel[] tasksPanels = new JPanel[TaskStatus.values().length]; // [todo, pending, in progress, completed]
 
   public TaskFrame(Connection connection){
     super("Tasks");
 
     taskService = new TaskService(connection);
+    userService = new UserService(connection);
 
     setSize(1080, 720);
     // Set the default close operation
@@ -82,7 +85,7 @@ public class TaskFrame extends JFrame implements TaskMovedListener {
       for (TaskStatus taskStatus : TaskStatus.values()){
         if (task.status.equals(taskStatus.getValue())){
 
-          TaskPanel taskPanel = new TaskPanel(task, taskService, tasksPanels);
+          TaskPanel taskPanel = new TaskPanel(task, taskService, userService, tasksPanels);
           taskPanel.addTaskMovedListeners(this);
 
           tasksPanels[i].add(taskPanel);

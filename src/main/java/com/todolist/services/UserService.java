@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
+import java.util.ArrayList;
 
 import com.todolist.models.User;
 
@@ -45,5 +46,28 @@ public class UserService {
     }
 
     return user;
+  }
+
+  public ArrayList<User> getTasks(int teamId) throws Exception {
+    String query = "SELECT * FROM User where team_id = ?";
+
+    PreparedStatement ps = connection.prepareStatement(query);
+    ps.setInt(1, teamId);
+    
+    ResultSet rs = ps.executeQuery();
+
+    ArrayList<User> users = new ArrayList<>();
+
+    while (rs.next()) {
+      int userId = rs.getInt("user_id");
+      String nama = rs.getString("nama");
+      String email = rs.getString("email");
+
+      User user = new User(userId, nama, email, teamId);
+
+      users.add(user);
+    }
+
+    return users;
   }
 }

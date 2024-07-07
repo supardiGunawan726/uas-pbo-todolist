@@ -15,20 +15,25 @@ import javax.swing.border.EmptyBorder;
 
 import com.todolist.listeners.TaskMovedListener;
 import com.todolist.models.Task;
+import com.todolist.models.User;
 import com.todolist.services.TaskService;
+import com.todolist.services.UserService;
 
 public class TaskPanel extends JPanel implements ActionListener {
   Task task;
   TaskService taskService;
+  UserService userService;
   JPanel[] tasksPanels; 
   ArrayList<TaskMovedListener> taskMovedListeners = new ArrayList<>();
 
-  public TaskPanel(Task task, TaskService taskService, JPanel[] tasksPanels){
+  public TaskPanel(Task task, TaskService taskService, UserService userService, JPanel[] tasksPanels){
     super();
 
     this.task = task;
     this.taskService = taskService;
     this.tasksPanels = tasksPanels;
+    this.userService = userService;
+
     setLayout(new BorderLayout());
     setBorder(new EmptyBorder(4, 4,4, 4));
 
@@ -43,11 +48,20 @@ public class TaskPanel extends JPanel implements ActionListener {
 
     JLabel dateLabel = new JLabel(formatDate(task.tanggal_tugas), JLabel.CENTER);
     dateLabel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 8));
+    headerPanel.add(dateLabel);
+
+    try {
+      User user = userService.getUser(task.user_id);
+      JLabel userLabel = new JLabel(user.nama, JLabel.CENTER);
+      userLabel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 8));
+      headerPanel.add(userLabel);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
 
     JLabel titleLabel = new JLabel(task.judul, JLabel.CENTER);
-
-    headerPanel.add(dateLabel);
     headerPanel.add(titleLabel);
+
     containerPanel.add(headerPanel);
 
     JLabel descriptionLabel = new JLabel("<html>" + task.deskripsi + "</html>");

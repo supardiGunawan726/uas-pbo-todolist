@@ -12,4 +12,9 @@ public class User {
     this.email = email;
     this.team_id = team_id;
   }
+
+  @Override
+  public String toString() {
+    return this.nama;
+  }
 }

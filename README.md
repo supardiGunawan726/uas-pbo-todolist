@@ -76,3 +76,31 @@ END //
 
 DELIMITER ;
 ```
+
+## Sample Data
+
+Jalankan kode SQL berikut untuk menambahkan sample data:
+
+```sql
+-- Menambahkan sample data ke tabel Team
+INSERT INTO Team (nama_team, deskripsi) VALUES
+('Development', 'Tim yang bertanggung jawab atas pengembangan produk.'),
+('Marketing', 'Tim yang bertanggung jawab atas pemasaran dan promosi.'),
+('Support', 'Tim yang bertanggung jawab atas dukungan pelanggan.');
+
+-- Menambahkan sample data ke tabel User
+INSERT INTO User (nama, email, password, team_id) VALUES
+('Alice', 'alice@example.com', 'password123', 1),  -- Development
+('Bob', 'bob@example.com', 'password123', 1),      -- Development
+('Charlie', 'charlie@example.com', 'password123', 2),  -- Marketing
+('David', 'david@example.com', 'password123', 3),  -- Support
+('Eve', 'eve@example.com', 'password123', 3);      -- Support
+
+-- Menambahkan sample data ke tabel Task
+INSERT INTO Task (judul, deskripsi, status, prioritas, team_id, user_id, tanggal_tugas) VALUES
+('Develop new feature', 'Develop a new feature for the product.', 'pending', 1, 1, 1, '2024-06-25'),  -- Development, Alice
+('Fix bugs', 'Fix bugs reported by users.', 'in progress', 2, 1, 2, '2024-06-26'),  -- Development, Bob
+('Launch marketing campaign', 'Launch a new marketing campaign.', 'pending', 1, 2, 3, '2024-06-27'),  -- Marketing, Charlie
+('Customer support', 'Provide support to customers.', 'completed', 3, 3, 4, '2024-06-24'),  -- Support, David
+('Update documentation', 'Update the product documentation.', 'pending', 2, 3, 5, '2024-06-25');  -- Support, Eve
+```
